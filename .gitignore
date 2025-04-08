@@ -1,0 +1,20 @@
+# Ignorar a pasta node_modules
+node_modules/
+
+# Ignorar arquivos de configuração específicos da IDE
+.vscode/
+.idea/
+
+# Ignorar arquivos de log e de erro
+npm-debug.log
+*.log
+
+# Ignorar o arquivo .env (contém credenciais sensíveis)
+.env
+
+# Ignorar arquivos de build ou temporários
+/dist
+/build
+
+# Ignorar o arquivo package-lock.json (se você não quiser versioná-lo)
+package-lock.json
