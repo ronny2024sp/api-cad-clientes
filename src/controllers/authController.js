@@ -46,12 +46,14 @@ const login = async (req, res) => {
 
     res.status(200).json({
       message: 'Login realizado com sucesso.',
+      /*
       userLogin: {
         id: user.id,
         name: user.name,
         email: user.login_email,
         role: user.Role.role_name,
       },
+      */
     });
   } catch (err) {
     console.error('Erro no login:', err);
