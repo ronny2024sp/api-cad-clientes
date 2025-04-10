@@ -3,10 +3,10 @@ const { enviarErro } = require('../utils');
 
 // Criar novo usuário
 const createUser = async (req, res) => {
-  const { login_email, password_hash, role_id, name, celular } = req.body;
+  const { login_email, password_hash, role_id, name, celular, avatar } = req.body;
 
   try {
-    const newUser = await User.create({ login_email, password_hash, role_id, name, celular });
+    const newUser = await User.create({ login_email, password_hash, role_id, name, celular, avatar });
     res.status(201).json(newUser);
   } catch (err) {
     console.error('Erro ao criar usuário:', err);

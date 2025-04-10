@@ -34,7 +34,7 @@ const login = async (req, res) => {
         name: user.name,
       },
       JWT_SECRET,
-      { expiresIn: '1h' }
+      { expiresIn: '30m' }
     );
 
     res.cookie('jwt', token, {
