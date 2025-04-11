@@ -12,8 +12,7 @@ dotenv.config();
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const clienteRoutes = require('./routes/clienteRoutes');
-//const userRoutes = require('./routes/userRoutes');
-//const profileRoutes = require('./routes/profileRoutes'); // Rotas de perfil
+const roleRoutes = require('./routes/roleRoutes');
 
 const app = express();
 
@@ -31,6 +30,7 @@ app.use(cookieParser()); // Leitura de cookies
 
 // Registro das rotas
 app.use('/auth', authRoutes);
+app.use('/role', roleRoutes); // Rotas protegidas para CRUD de Cliente
 app.use('/users', userRoutes); // Rotas protegidas para CRUD de User
 app.use('/clientes', clienteRoutes); // Rotas protegidas para CRUD de Cliente
 
