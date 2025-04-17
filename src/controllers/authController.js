@@ -27,6 +27,13 @@ const login = async (req, res) => {
       return enviarErro(res, 401, 'Credenciais inválidas.');
     }
 
+
+    // --------------- Metodo - Exipção do Token --------------- //
+    // 20 MINUTOS = (20 * 60)
+    // 1 HORA = (60 * 60)
+    // 2 HORA = (2 * 60 * 60)
+    const EXPIRACAO_TOKEN = 20 * 60; // 20 minutos em segundos
+
     const token = jwt.sign(
       {
         id: user.id,
@@ -34,27 +41,19 @@ const login = async (req, res) => {
         name: user.name,
       },
       JWT_SECRET,
-      { expiresIn: '20m' }
+      { expiresIn: EXPIRACAO_TOKEN } 
     );
-
+    
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'Strict',
-      maxAge: 60 * 60 * 1000,
+      maxAge: EXPIRACAO_TOKEN * 1000, // Em milissegundos
     });
+    // ------------ Metodo - Exipção do Token --------------- //
 
-    res.status(200).json({
-      message: 'Login realizado com sucesso.',
-      /*
-      userLogin: {
-        id: user.id,
-        name: user.name,
-        email: user.login_email,
-        role: user.Role.role_name,
-      },
-      */
-    });
+
+
   } catch (err) {
     console.error('Erro no login:', err);
     enviarErro(res, 500, 'Erro interno no servidor.');
